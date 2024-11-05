@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
@@ -241,7 +242,15 @@ void trataErro(char palavra[], int pos)
 
 int main(int argc, char const *argv[])
 {
-  char palavra[] = "1+1**$";
+
+  FILE *fd;
+  fd = fopen("entrada.txt", "r");
+
+  int max = 100; 
+  char buff[max];
+
+  fscanf(fd, "%s", buff);
+  char *palavra = buff;
   int pos = 0;
 
   lookahead = palavra[pos];
