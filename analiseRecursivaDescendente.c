@@ -171,6 +171,7 @@ int F(char palavra[], int *pos)
     if(match('9', palavra, pos) && D(palavra, pos)) return TRUE;
     return FALSE;
   }
+  return FALSE;
 }
 
 int D(char palavra[], int *pos)
@@ -228,14 +229,28 @@ int D(char palavra[], int *pos)
   return TRUE; // D -> e
 }
 
+void trataErro(char palavra[], int pos)
+{
+  fprintf(stderr, "erro na posicao %i\n -> ", pos);
+  for (int i = 0; i < pos; i++)
+  {
+    fprintf(stderr, "%c", palavra[i]);
+  }
+  fprintf(stderr, "!%c!\n", palavra[pos]);
+}
+
 int main(int argc, char const *argv[])
 {
-  char palavra[] = "1+1$";
+  char palavra[] = "1+1**$";
   int pos = 0;
 
   lookahead = palavra[pos];
   if (E(palavra, &pos)) printf("Sucesso!\n");
-  else fprintf(stderr, "Erro na posição %i\n", pos);
+  else 
+  {
+    trataErro(palavra, pos);
+    return EXIT_FAILURE;
+  }
   return EXIT_SUCCESS;
 }
 
