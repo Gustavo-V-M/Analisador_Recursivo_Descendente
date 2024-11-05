@@ -1,3 +1,11 @@
+/*
+Membros do Grupo:
+Ana Clara Melo Senne - 10389744
+Arthur de Pina Balduino Leitão - 10400677
+Erick Nakabayashi Dedivitis  - 10403532
+Gustavo Vilela Mitraud - 10400866
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -5,8 +13,8 @@
 #define EXIT_SUCCESS 0
 #define EXIT_FAILURE 1
 
-#define TRUE 1
-#define FALSE 0
+#define _TRUE 1
+#define _FALSE 0
 
 char lookahead;
 
@@ -14,11 +22,10 @@ int match(char check, char palavra[], int *pos)
 {
   if (lookahead == check){
     lookahead = palavra[++(*pos)];
-    return TRUE;
+    return _TRUE;
   }
-  return FALSE;
+  return _FALSE;
 }
-
 
 /*
 * N = {E, S, K, T, Z, F, D}
@@ -52,18 +59,18 @@ int E(char palavra[], int *pos)
 {
   if (S(palavra, pos) && match('$', palavra, pos))
   {
-    return TRUE;
+    return _TRUE;
   }
-  return FALSE;
+  return _FALSE;
 }
 
 int S(char palavra[], int *pos)
 {
   if(T(palavra, pos) && K(palavra, pos))
   {
-    return TRUE;
+    return _TRUE;
   }
-  return FALSE;
+  return _FALSE;
 }
 
 int K(char palavra[], int *pos)
@@ -72,29 +79,29 @@ int K(char palavra[], int *pos)
   {
     if (match('+', palavra, pos) && T(palavra, pos), K(palavra, pos))
     {
-      return TRUE;
+      return _TRUE;
     }
-    return FALSE;
+    return _FALSE;
   }
   else if (lookahead == '-')
   {
     if (match('+', palavra, pos) && T(palavra, pos), K(palavra, pos))
     {
-      return TRUE;
+      return _TRUE;
     }
-    return FALSE;
+    return _FALSE;
   }
   
-    return TRUE; // K -> e
+    return _TRUE; // K -> e
 }
 
 int T(char palavra[], int *pos)
 {
   if (F(palavra, pos) && Z(palavra, pos))
   {
-    return TRUE;
+    return _TRUE;
   }
-  return FALSE;
+  return _FALSE;
 }
 
 int Z(char palavra[], int *pos)
@@ -103,18 +110,18 @@ int Z(char palavra[], int *pos)
   {
     if (match('*', palavra, pos) && F(palavra, pos) && Z(palavra, pos))
     {
-      return TRUE;
+      return _TRUE;
     }
-    return FALSE;
+    return _FALSE;
   }
   else if (lookahead == '/')
   {
     if (match('/', palavra, pos) && F(palavra, pos) && Z(palavra, pos))
     {
-      return FALSE;
+      return _FALSE;
     }
   }
-  return TRUE; // Z -> e
+  return _TRUE; // Z -> e
 }
 
 int F(char palavra[], int *pos)
@@ -123,111 +130,111 @@ int F(char palavra[], int *pos)
   {
     if (S(palavra, pos) && match(')', palavra, pos))
     {
-      return TRUE;
+      return _TRUE;
     }
-    return FALSE;
+    return _FALSE;
   }
   else if (lookahead == '1')
   {
-    if(match('1', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('1', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '2')
   {
-    if(match('2', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('2', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '3')
   {
-    if(match('3', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('3', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '4')
   {
-    if(match('4', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('4', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '5')
   {
-    if(match('5', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('5', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '6')
   {
-    if(match('6', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('6', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '7')
   {
-    if(match('7', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('7', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '8')
   {
-    if(match('8', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('8', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '9')
   {
-    if(match('9', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('9', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
-  return FALSE;
+  return _FALSE;
 }
 
 int D(char palavra[], int *pos)
 {
   if (lookahead == '0')
   {
-    if(match('0', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('0', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '1')
   {
-    if(match('1', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('1', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '2')
   {
-    if(match('2', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('2', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '3')
   {
-    if(match('3', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('3', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '4')
   {
-    if(match('4', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('4', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '5')
   {
-    if(match('5', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('5', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '6')
   {
-    if(match('6', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('6', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '7')
   {
-    if(match('7', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('7', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '8')
   {
-    if(match('8', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('8', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
   else if (lookahead == '9')
   {
-    if(match('9', palavra, pos) && D(palavra, pos)) return TRUE;
-    return FALSE;
+    if(match('9', palavra, pos) && D(palavra, pos)) return _TRUE;
+    return _FALSE;
   }
-  return TRUE; // D -> e
+  return _TRUE; // D -> e
 }
 
 void trataErro(char palavra[], int pos)
